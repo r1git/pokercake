@@ -1,0 +1,48 @@
+<h1>Partie chez <?php echo $party['Joueur']['nom']?> le <?php echo $party['Party']['date']?></h1>
+<table>
+<tr>
+	<th>Rang</th>
+        <th>Joueur</th>
+        <th>Score</th>
+	<?php if ($session->check('User')) echo '<th></th>'; ?>
+</tr>
+<?php $total=0.0; $i=0; ?>
+<?php foreach ($party['Resultat'] as $key => $resultat): ?>
+    <tr<?php if($i++%2==0) echo ' class="altRow"'?>>       
+	<td><?php echo $i;?></td>
+        <td>
+            <?php echo $html->link($listenoms[$resultat['joueur_id']], "/joueurs/view/".$resultat['joueur_id']); ?>
+        </td>
+        <td><?php echo $resultat['score']; ?> &euro;</td>
+	<?php $total=bcadd($total, $resultat['score'], 2); ?>
+	<?php if ($session->check('User')) {
+		echo '<td>'; 
+		echo $html->link('Del', "/resultats/del/".$resultat['id']."/".$id, null, 'Effacer ce resultat ?'); 
+		echo '</td>';} ?>
+    </tr>
+<?php endforeach; ?>
+<tr>
+	<td></td>
+	<td><h2>Total</h2></td>
+	<td><h2><?php echo $total?> &euro;</h2></td>
+	<?php if ($session->check('User')) echo '<td></td>'; ?>
+</tr>
+</table>
+<?php if($session->check('User')) {?>
+<form method="post" action="<?php echo $html->url('/parties/view/'.$id)?>">
+    <p>
+        Joueur:<br>
+        <?php echo $html->selectTag('Resultat/joueur_id', $listenoms) ?>
+        <?php echo $html->tagErrorMsg('Resultat/joueur_id', 'Joueur invalide') ?>
+    <p>
+        Score:
+        <?php echo $html->input('Resultat/score', array('size' => '6'))?>
+        <?php echo $html->tagErrorMsg('Resultat/score', 'Score invalide') ?>
+    </p>
+	<?php echo $html->hidden('Resultat/party_id', array('value' => $id)) ?>
+    <p>
+        <?php echo $html->submit('Add') ?>
+    </p>
+</form>
+<?php }?>
+<?php echo $this->renderElement('navig'); ?>

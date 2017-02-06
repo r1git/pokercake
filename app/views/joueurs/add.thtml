@@ -1,0 +1,13 @@
+</br>
+<h1>Nouveau Joueur</h1>
+<form method="post" action="<?php echo $html->url('/joueurs/add')?>">
+    <p>
+        Nom:
+        <?php echo $html->input('Joueur/nom', array('size' => '40'))?>
+        <?php echo $html->tagErrorMsg('Joueur/nom', 'Entrez un nom') ?>
+    </p>
+    <p>
+        <?php echo $html->submit('Save') ?>
+    </p>
+</form>
+<?php echo $this->renderElement('navig'); ?>
