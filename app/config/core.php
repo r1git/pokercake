@@ -86,7 +86,7 @@
  * Set a random string of used in session.
  *
  */
-	define('CAKE_SESSION_STRING', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi');
+	define('CAKE_SESSION_STRING', 'TODO:generate_your_own_string');
 /**
  * Set the name of session cookie
  *
