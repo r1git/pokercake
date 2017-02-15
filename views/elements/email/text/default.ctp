@@ -1,5 +1,6 @@
 <?php
 /**
+ *
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
@@ -11,8 +12,9 @@
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
- * @subpackage    cake.app
+ * @subpackage    cake.cake.libs.view.templates.elements.email.text
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-require 'webroot' . DIRECTORY_SEPARATOR . 'index.php';
+?>
+<?php echo $content; ?>
